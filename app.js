@@ -16,16 +16,32 @@ setInterval(updateCountdown, 1000);
 const envelope = document.getElementById('envelope');
 const invitation = document.getElementById('invitation');
 const weddingMusic = document.getElementById('weddingMusic');
+let musicReady;
+function prepareMusic() {
+  if (!musicReady) {
+    const parts = Array.from({ length: 5 }, (_, index) => `./audio/track-${index + 1}.b64`);
+    musicReady = Promise.all(parts.map((path) => fetch(path).then((response) => {
+      if (!response.ok) throw new Error('No se pudo cargar la música.');
+      return response.text();
+    })))
+      .then((chunks) => {
+        const binary = atob(chunks.join('').trim());
+        const bytes = Uint8Array.from(binary, (character) => character.charCodeAt(0));
+        weddingMusic.src = URL.createObjectURL(new Blob([bytes], { type: 'audio/mpeg' }));
+      });
+  }
+  return musicReady;
+}
 document.getElementById('openInvitation').addEventListener('click', () => {
   envelope.classList.add('is-open');
   invitation.setAttribute('aria-hidden', 'false');
-  weddingMusic.play().catch(() => {});
+  prepareMusic().then(() => weddingMusic.play()).catch(() => {});
 });
 
 const musicToggle = document.getElementById('musicToggle');
 musicToggle.addEventListener('click', () => {
   if (weddingMusic.paused) {
-    weddingMusic.play();
+    prepareMusic().then(() => weddingMusic.play()).catch(() => {});
     musicToggle.textContent = 'Pausar música';
     musicToggle.setAttribute('aria-pressed', 'true');
     musicToggle.title = 'Pausar música';
