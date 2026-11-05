@@ -1,0 +1,33 @@
+@media (max-width:700px){
+  .envelope{grid-template-rows:auto 220px;align-content:start;padding-top:7vh;gap:0}
+  .envelope-intro{transform:none;margin:0 auto;text-align:center}
+  .envelope-intro h1{font-size:clamp(52px,16vw,74px);margin:2px 0 9px}
+  .envelope-intro .open-copy{margin:8px 0 0}
+  .envelope-card{width:76vw;min-height:210px;transform:translateY(-4px)}
+  .envelope-card .seal{width:96px;height:96px}
+
+  .date-section{display:grid;grid-template-columns:48px 1fr;min-height:760px;padding:76px 20px}
+  .date-number{display:flex;flex-direction:column;align-self:start;gap:4px;margin:70px 0 0 22px;font-size:clamp(90px,25vw,130px);line-height:.67}
+  .date-number b{display:none}
+  .date-number span:last-child{font-size:.58em;letter-spacing:-.04em}
+  .date-details{left:88px;right:20px;bottom:80px;text-align:left}
+  .date-details h2{display:none}
+
+  .gallery{min-height:820px;height:auto;padding:66px 20px 40px}
+  .gallery h2{position:relative;z-index:3;top:auto;left:auto;transform:none;margin:0 0 34px;font-size:clamp(70px,20vw,94px);line-height:.8;overflow-wrap:anywhere}
+  .gallery p{position:relative;z-index:3;left:auto;bottom:auto;margin:44px 0 0;max-width:25ch}
+  .gallery .print{position:relative;display:inline-block;top:auto;right:auto;bottom:auto;left:auto;width:45%;margin:0 1.5% 16px;vertical-align:top;transform:none}
+  .gallery .print:nth-of-type(even){margin-top:30px}
+  .gallery .print img{aspect-ratio:3/4}
+
+  .gift{display:flex;flex-direction:column;align-items:center;text-align:center}
+  .gift .meta,.gift h2,.gift>p{align-self:stretch}
+  .qr-placeholder{width:210px;height:210px;margin:38px auto 0;font-size:42px}
+
+  .footer{min-height:0;padding:84px 20px 300px}
+  .footer h2{font-size:clamp(58px,17vw,82px);line-height:.82;overflow-wrap:anywhere}
+  .footer-copy{position:relative;z-index:2}
+  .footer-note{position:relative;left:auto;right:auto;bottom:auto;margin:70px 0 28px;z-index:2}
+  .footer-name{left:20px;bottom:8px;font-size:20vw;max-width:calc(100vw - 20px);overflow:hidden;line-height:.8}
+}
+
