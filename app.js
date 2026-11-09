@@ -21,6 +21,7 @@ function applyInvitation() {
   const data = {
     ...I,
     day, month, year,
+    yearShort: year.slice(-2),
     dateDay,
     dateShort: `${day} · ${month} · ${year}`,
     dateLabel: `${weekdayCap} · ${dayNumber} de ${monthName} · ${year}`,
