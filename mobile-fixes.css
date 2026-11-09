@@ -1,9 +1,9 @@
 @media (max-width:700px){
-  .envelope{grid-template-rows:auto 220px;align-content:start;padding-top:7vh;gap:0}
+  .envelope{grid-template-rows:auto auto;align-content:start;padding-top:7vh;gap:0}
   .envelope-intro{transform:none;margin:0 auto;text-align:center}
   .envelope-intro h1{font-size:clamp(52px,16vw,74px);margin:2px 0 9px}
-  .envelope-intro .open-copy{margin:8px 0 0}
-  .envelope-card{width:76vw;min-height:210px;transform:translateY(-4px)}
+  .envelope-intro .open-copy{margin:8px 0 0;transform:none}
+  .envelope-card{width:76vw;min-height:210px;margin-top:40px;transform:none}
   .envelope-card .seal{width:96px;height:96px}
 
   .date-section{display:grid;grid-template-columns:48px 1fr;min-height:760px;padding:76px 20px}
