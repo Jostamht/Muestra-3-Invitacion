@@ -21,55 +21,50 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="enhancements.css" />
-    <link rel="stylesheet" href="refinements.css" />
-    <link rel="stylesheet" href="final-polish.css" />
-    <link rel="stylesheet" href="chronogram-fix.css" />
-    <link rel="stylesheet" href="mobile-fixes.css" />
   </head>
-  <body>
+  <body class="is-locked">
     <section class="envelope" id="envelope" aria-labelledby="envelope-title">
       <div class="envelope-intro">
         <p class="meta">Una invitación muy especial</p>
-        <h1 id="envelope-title">Novia <em>&</em> Novio</h1>
+        <p class="envelope-title" id="envelope-title" data-couple>Novia <em>&</em> Novio</p>
         <p class="open-copy">Toca el sello para abrir</p>
-        <p class="envelope-date">31 · 12 · 2026</p>
+        <p class="envelope-date" data-bind="dateShort">31 · 12 · 2026</p>
       </div>
       <div class="envelope-card">
-        <button class="seal" id="openInvitation" type="button" aria-label="Abrir invitación"><span>N + N</span></button>
+        <button class="seal" id="openInvitation" type="button" aria-label="Abrir invitación"><span data-bind="initials">N + N</span></button>
       </div>
     </section>
     <div class="progress" aria-hidden="true"><span></span></div>
-    <audio id="weddingMusic" loop preload="none" aria-label="Música de fondo de la invitación"></audio>
-    <main id="invitation" aria-hidden="true">
+    <audio id="weddingMusic" src="audio/wedding.mp3" loop preload="auto" aria-label="Música de fondo de la invitación"></audio>
+    <main id="invitation" inert>
       <section class="hero" id="inicio" aria-labelledby="title">
         <nav class="topbar" aria-label="Navegación principal">
-          <a href="#inicio" class="monogram" aria-label="Ir al inicio">N + N</a>
-          <div class="navlinks"><button class="music-toggle" id="musicToggle" type="button" aria-pressed="true" title="Pausar música">Pausar música</button><a href="#dia">El día</a><a href="#asistencia">Confirmar</a></div>
+          <a href="#inicio" class="monogram" aria-label="Ir al inicio" data-bind="initials">N + N</a>
+          <div class="navlinks"><button class="music-toggle" id="musicToggle" type="button" aria-pressed="false" title="Reproducir música">Reproducir música</button><a href="#dia">El día</a><a href="#asistencia">Confirmar</a></div>
         </nav>
-        <figure class="hero-photo reveal"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1500&q=90&sat=-100" alt="Pareja de boda tomada de las manos" /></figure>
+        <figure class="hero-photo reveal"><img fetchpriority="high" decoding="async" src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1500&q=90&sat=-100" alt="Pareja de boda tomada de las manos" /></figure>
         <div class="hero-copy">
-          <p class="meta">Jueves · 31 de diciembre · 2026</p>
-          <h1 id="title">Novia <em>&</em> Novio</h1>
+          <p class="meta" data-bind="dateLabel">Jueves · 31 de diciembre · 2026</p>
+          <h1 id="title" data-couple>Novia <em>&</em> Novio</h1>
           <p class="hero-note">Nos casamos. Nos encantará que seas parte de este día inolvidable.</p>
         </div>
         <a class="hero-action" href="#dia">Descubre la invitación <span aria-hidden="true">↓</span></a>
       </section>
 
       <section class="intro section" aria-label="Bienvenida">
-        <div class="intro-image reveal"><img src="https://images.unsplash.com/photo-1507504031003-b417219a0fde?auto=format&fit=crop&w=1000&q=85&sat=-100" alt="Ramo de flores blancas" /></div>
+        <div class="intro-image reveal"><img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1507504031003-b417219a0fde?auto=format&fit=crop&w=1000&q=85&sat=-100" alt="Ramo de flores blancas" /></div>
         <p class="intro-copy reveal">Hay días que merecen guardarse para siempre. Con la alegría de nuestras familias, queremos compartir contigo el comienzo de nuestra nueva historia.</p>
         <p class="aside reveal">Una noche para brindar,<br />bailar y celebrar el amor.</p>
       </section>
 
       <section class="date-section section" aria-labelledby="save-date">
         <p class="vertical-word" aria-hidden="true">RESERVA LA FECHA</p>
-        <div class="date-number reveal" aria-label="31 de diciembre de 2026"><span>31</span><b aria-hidden="true">·</b><span>12</span><b aria-hidden="true">·</b><span>2026</span></div>
+        <div class="date-number reveal" aria-label="31 de diciembre de 2026" data-bind-label="dateDay"><span data-bind="day">31</span><b aria-hidden="true">·</b><span data-bind="month">12</span><b aria-hidden="true">·</b><span data-bind="year">2026</span></div>
         <div class="date-details reveal">
           <h2 id="save-date">Save the date</h2>
-          <p>Jueves, 31 de diciembre de 2026</p>
-          <p>La Paz · Bolivia</p>
-          <a class="calendar-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Boda%20de%20Novia%20y%20Novio&dates=20261231T210000Z/20270101T040000Z&details=Celebramos%20nuestra%20boda.&location=La%20Paz%2C%20Bolivia" target="_blank" rel="noreferrer">Añadir a Google Calendar</a>
+          <p data-bind="dateLong">Jueves, 31 de diciembre de 2026</p>
+          <p data-bind="city">La Paz · Bolivia</p>
+          <a class="calendar-link" id="calendarLink" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Boda%20de%20Novia%20y%20Novio&dates=20261231T210000Z/20270101T040000Z&details=Celebramos%20nuestra%20boda.&location=La%20Paz%2C%20Bolivia" target="_blank" rel="noreferrer">Añadir a Google Calendar</a>
         </div>
       </section>
 
@@ -91,8 +86,8 @@
       <section class="day section" id="dia" aria-labelledby="day-title">
         <div class="day-intro reveal"><p class="meta">Dos momentos muy especiales</p><h2 id="day-title">El día de nuestra boda</h2><p>Todo lo que necesitas para acompañarnos en nuestra celebración.</p></div>
         <div class="event-list">
-          <article class="event reveal"><figure class="venue-photo"><img src="https://images.unsplash.com/photo-1507504031003-b417219a0fde?auto=format&fit=crop&w=1000&q=85&sat=-100" alt="Espacio reservado para fotografía de la ceremonia" /></figure><p class="event-time">17:00</p><div><h3>Ceremonia religiosa</h3><p>Lugar de la ceremonia<br />Insertar dirección</p><a href="https://maps.google.com" target="_blank" rel="noreferrer">Abrir ubicación</a></div><a class="event-map" href="https://maps.google.com" target="_blank" rel="noreferrer"><span>Espacio para imagen del mapa</span></a></article>
-          <article class="event reveal"><figure class="venue-photo"><img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1000&q=85&sat=-100" alt="Espacio reservado para fotografía de la recepción" /></figure><p class="event-time">19:00</p><div><h3>Recepción</h3><p>Lugar de la recepción<br />Insertar dirección</p><a href="https://maps.google.com" target="_blank" rel="noreferrer">Abrir ubicación</a></div><a class="event-map" href="https://maps.google.com" target="_blank" rel="noreferrer"><span>Espacio para imagen del mapa</span></a></article>
+          <article class="event reveal"><figure class="venue-photo"><img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1507504031003-b417219a0fde?auto=format&fit=crop&w=1000&q=85&sat=-100" alt="Espacio reservado para fotografía de la ceremonia" /></figure><p class="event-time" data-bind="ceremonyTime">17:00</p><div><h3>Ceremonia religiosa</h3><p>Lugar de la ceremonia<br />Insertar dirección</p><a href="https://maps.google.com" target="_blank" rel="noreferrer">Abrir ubicación</a></div><a class="event-map" href="https://maps.google.com" target="_blank" rel="noreferrer"><span>Espacio para imagen del mapa</span></a></article>
+          <article class="event reveal"><figure class="venue-photo"><img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1000&q=85&sat=-100" alt="Espacio reservado para fotografía de la recepción" /></figure><p class="event-time" data-bind="receptionTime">19:00</p><div><h3>Recepción</h3><p>Lugar de la recepción<br />Insertar dirección</p><a href="https://maps.google.com" target="_blank" rel="noreferrer">Abrir ubicación</a></div><a class="event-map" href="https://maps.google.com" target="_blank" rel="noreferrer"><span>Espacio para imagen del mapa</span></a></article>
         </div>
       </section>
 
@@ -110,35 +105,37 @@
 
       <section class="gallery section" aria-labelledby="gallery-title">
         <h2 id="gallery-title">Nuestro<br />comienzo</h2>
-        <figure class="print print-one reveal"><img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=900&q=85&sat=-100" alt="Pareja abrazada durante su boda" /></figure>
-        <figure class="print print-two reveal"><img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=900&q=85&sat=-100" alt="Detalle de manos con anillos" /></figure>
-        <figure class="print print-three reveal"><img src="https://images.unsplash.com/photo-1544078751-58fee2d8a03b?auto=format&fit=crop&w=900&q=85&sat=-100" alt="Manos de una pareja con flores" /></figure>
-        <figure class="print print-four reveal"><img src="https://images.unsplash.com/photo-1507504031003-b417219a0fde?auto=format&fit=crop&w=900&q=85&sat=-100" alt="Flores claras para la celebración" /></figure>
-        <figure class="print print-five reveal"><img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=900&q=85&sat=-100" alt="Mesa para una celebración" /></figure>
-        <figure class="print print-six reveal"><img src="https://images.unsplash.com/photo-1478146896981-b80fe463b330?auto=format&fit=crop&w=900&q=85&sat=-100" alt="Detalle de celebración nocturna" /></figure>
+        <figure class="print print-one reveal"><img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=900&q=85&sat=-100" alt="Pareja abrazada durante su boda" /></figure>
+        <figure class="print print-two reveal"><img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=900&q=85&sat=-100" alt="Detalle de manos con anillos" /></figure>
+        <figure class="print print-three reveal"><img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1544078751-58fee2d8a03b?auto=format&fit=crop&w=900&q=85&sat=-100" alt="Manos de una pareja con flores" /></figure>
+        <figure class="print print-four reveal"><img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1507504031003-b417219a0fde?auto=format&fit=crop&w=900&q=85&sat=-100" alt="Flores claras para la celebración" /></figure>
+        <figure class="print print-five reveal"><img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=900&q=85&sat=-100" alt="Mesa para una celebración" /></figure>
+        <figure class="print print-six reveal"><img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1478146896981-b80fe463b330?auto=format&fit=crop&w=900&q=85&sat=-100" alt="Detalle de celebración nocturna" /></figure>
         <p>Recuerdos que atesoramos, antes de crear muchos más contigo.</p>
       </section>
 
       <section class="details section" aria-label="Información adicional">
         <article class="gift reveal"><p class="meta">Un detalle con cariño</p><h2>Tu presencia es nuestro mejor regalo</h2><p>Si deseas hacernos llegar un detalle, aquí podrás encontrar un código QR para hacerlo.</p><div class="qr-placeholder" aria-label="Espacio reservado para código QR">QR</div></article>
-        <article class="zoom reveal"><p class="meta">También a la distancia</p><h2>Acompáñanos por Zoom</h2><p>Si no puedes estar presente, también podrás compartir este día especial con nosotros.</p><dl><div><dt><span aria-hidden="true">◷</span> Hora</dt><dd>17:00 · hora de Bolivia</dd></div><div><dt><span aria-hidden="true">⌘</span> ID de reunión</dt><dd>Insertar ID</dd></div><div><dt><span aria-hidden="true">&#10027;</span> Contraseña</dt><dd>Insertar contraseña</dd></div></dl></article>
+        <article class="zoom reveal"><p class="meta">También a la distancia</p><h2>Acompáñanos por Zoom</h2><p>Si no puedes estar presente, también podrás compartir este día especial con nosotros.</p><dl><div><dt><span aria-hidden="true">◷</span> Hora</dt><dd data-bind="zoomTime">17:00 · hora de Bolivia</dd></div><div><dt><span aria-hidden="true">⌘</span> ID de reunión</dt><dd>Insertar ID</dd></div><div><dt><span aria-hidden="true">&#10027;</span> Contraseña</dt><dd>Insertar contraseña</dd></div></dl></article>
       </section>
 
       <footer id="asistencia" class="footer" aria-labelledby="rsvp-title">
-        <div class="footer-copy reveal"><p class="meta">Tu presencia nos hará felices</p><h2 id="rsvp-title">¿Nos acompañas?</h2><p>Busca tu nombre y confirma tus pases. Esta demostración puede conectarse luego a tu lista definitiva de invitados.</p>
+        <div class="footer-copy reveal"><p class="meta">Tu presencia nos hará felices</p><h2 id="rsvp-title">¿Nos acompañas?</h2><p>Busca tu nombre y confirma tus pases.</p>
           <form class="rsvp-form" id="rsvpForm">
-            <label>Nombre y apellido<input id="guestName" name="guestName" type="search" placeholder="Escribe tu nombre" required /></label>
-            <label>Número de pases<select id="guestPasses" name="guestPasses" required><option value="">Selecciona</option><option value="1">1 pase</option><option value="2">2 pases</option><option value="3">3 pases</option><option value="4">4 pases</option></select></label>
+            <label>Nombre y apellido<input id="guestName" name="guestName" type="search" autocomplete="name" placeholder="Escribe tu nombre" required /></label>
+            <label>Pases<select id="guestPasses" name="guestPasses" required disabled><option value="">Primero escribe tu nombre</option></select></label>
             <label>Últimos 4 dígitos del celular<input id="guestPhone" name="guestPhone" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" placeholder="0000" required /></label>
+            <p class="form-feedback form-hint" id="guestHint" aria-live="polite"></p>
             <button class="rsvp-button" type="submit">Confirmar asistencia</button>
             <p class="form-feedback" id="formFeedback" role="status"></p>
           </form>
         </div>
-        <p class="footer-note">Gracias por ser parte de nuestra historia · 31 de diciembre de 2026</p>
-        <p class="footer-name" aria-hidden="true">NOVIA &amp; NOVIO</p>
+        <p class="footer-note" data-bind="footerNote">Gracias por ser parte de nuestra historia · 31 de diciembre de 2026</p>
+        <p class="footer-name" aria-hidden="true" data-bind="coupleUpper">NOVIA &amp; NOVIO</p>
       </footer>
     </main>
     <div class="gallery-modal" id="galleryModal" aria-hidden="true" role="dialog" aria-label="Vista ampliada de fotografía"><button type="button" aria-label="Cerrar fotografía">×</button><img src="" alt="" /></div>
+    <script src="invite.js"></script>
     <script src="app.js"></script>
   </body>
 </html>
